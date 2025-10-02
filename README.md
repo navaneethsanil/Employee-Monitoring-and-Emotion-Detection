@@ -45,6 +45,8 @@ python -m venv env
 env\Scripts\activate
 # macOS/Linux
 source env/bin/activate
+# gitbash
+source env/scripts/activate
 ```
 
 ### 3. Install dependencies
