@@ -38,7 +38,7 @@ git clone https://github.com/navaneethsanil/Employee-Monitoring-and-Emotion-Dete
 cd Employee-Monitoring-and-Emotion-Detection
 ```
 
-### Create virtual environment and activate
+### 2. Create virtual environment and activate
 ```bash
 python -m venv env
 # Windows
@@ -47,17 +47,17 @@ env\Scripts\activate
 source env/bin/activate
 ```
 
-### Install dependencies
+### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### Apply database migrations
+### 4. Apply database migrations
 ```bash
 python manage.py migrate
 ```
 
-### Run the Django server
+### 5. Run the Django server
 ```bash
 python manage.py runserver
 ```
