@@ -1,0 +1,8 @@
+{% extends "app/base.html" %}
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <h2>Emotion Recognition</h2>
+    <img src="{% url 'video_feed' %}" width="640" height="480" style="border:1px solid black;" />
+    <a href="{% url 'stop_camera' %}" class="btn btn-danger mt-3">Close Camera</a>
+</div>
+{% endblock %}

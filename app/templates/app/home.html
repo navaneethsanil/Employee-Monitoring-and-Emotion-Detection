@@ -1,0 +1,79 @@
+{% extends "app/base.html" %}
+{% block content %}
+<div class="container mt-5">
+
+    <!-- Camera button -->
+    <div class="d-flex justify-content-center mb-4">
+        <a href="{% url 'camera' %}" class="btn btn-primary btn-lg">Open Camera</a>
+    </div>
+
+    <!-- Daily Presence Summary -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Presence Today</h5>
+                    <p class="card-text display-4">{{ presence_percent }}%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Most Common Emotion Today</h5>
+                    <p class="card-text display-5">{{ most_common_emotion }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Most Common Emotion This Week</h5>
+                    <p class="card-text display-5">{{ most_common_weekly_emotion }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emotion Distribution Chart -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-center">Emotion Distribution Today</h5>
+            <canvas id="emotionChart"></canvas>
+        </div>
+    </div>
+
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('emotionChart').getContext('2d');
+    const emotionChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ emotion_labels| safe }},
+    datasets: [{
+        label: 'Count',
+        data: {{ emotion_values| safe }},
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+            }]
+        },
+    options: {
+        responsive: true,
+            scales: {
+            y: {
+                beginAtZero: true,
+                    ticks: {
+                    stepSize: 1
+                }
+            }
+        }
+    }
+    });
+</script>
+{% endblock %}
